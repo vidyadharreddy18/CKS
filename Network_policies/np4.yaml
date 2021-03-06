@@ -1,0 +1,44 @@
+#Task4:  Create a network policy to allow traffic from the 'Internal' application only to the 'payroll-service' and 'db-service'
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: internal-policy
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      name: internal
+  policyTypes:
+  - Egress
+  - Ingress
+  ingress:
+    - {}
+  egress:
+  - to:
+    - podSelector:
+        matchLabels:
+          name: mysql
+    ports:
+    - protocol: TCP
+      port: 3306
+
+  - to:
+    - podSelector:
+        matchLabels:
+          name: payroll
+    ports:
+    - protocol: TCP
+      port: 8080
+# this DNS reslution ports are necessary because.. k8s can only resolve pod names using dns ports 
+  - ports:
+    - port: 53
+      protocol: UDP
+    - port: 53
+      protocol: TCP
+
+# controlplane $ kubectl get pods --show-labels
+# NAME       READY   STATUS    RESTARTS   AGE    LABELS
+# external   1/1     Running   0          8m6s   name=external
+# internal   1/1     Running   0          8m6s   name=internal
+# mysql      1/1     Running   0          8m6s   name=mysql
+# payroll    1/1     Running   0          8m6s   name=payroll
