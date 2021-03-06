@@ -1,0 +1,2 @@
+#task3: assume you have a backup server external to k8s and you want to allow ingress traffic from backup server to db pod. The IP address of backup server is 192.168.2.1
+
