@@ -18,3 +18,8 @@ spec:
     targetPort: 443
   selector:
     app: ingress-nginx
+    
+    
+#This can be verified using: 
+  #curl http://<nodeIP>:31151/healthz
+  #curl http://<lb-ip>:80/healthz
