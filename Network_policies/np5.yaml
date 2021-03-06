@@ -9,3 +9,11 @@ spec:
   policyTypes:
   - Ingress
   - Egress 
+  # this DNS reslution ports are necessary because.. k8s can only resolve pod names using dns ports 
+  egress:
+  - to:
+    ports:
+    - port: 53
+      protocol: UDP
+    - port: 53
+      protocol: TCP
