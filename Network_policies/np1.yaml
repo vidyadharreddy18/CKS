@@ -1,0 +1,12 @@
+#Task-1: to restrict all the ingress and egress traffic to a pod with label role:db.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: db-ploicy
+spec:
+  podSelector:
+    matchLabels:
+      role: db
+  policyTypes:
+  - Ingress
+  - Egress 
