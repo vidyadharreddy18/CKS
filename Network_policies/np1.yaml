@@ -1,4 +1,4 @@
-#Task-1: to restrict all the ingress and egress traffic to a pod with label role:db.
+#Task-1: to restrict all the ingress and egress traffic to a pod.
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -10,3 +10,17 @@ spec:
   policyTypes:
   - Ingress
   - Egress 
+      
+
+
+
+
+
+
+
+
+# k8s@k8s-21:~/ezpedvi> kubectl get pods --show-labels
+# NAME                READY   STATUS    RESTARTS   AGE   LABELS
+# ezpedvi-api         1/1     Running   0          32m   role=api,run=ezpedvi-api
+# ezpedvi-db          1/1     Running   0          33m   role=db,run=ezpedvi-db
+# ezpedvi-webserver   1/1     Running   0          32m   role=webserver,run=ezpedvi-webserver    
