@@ -1,0 +1,11 @@
+#task5: create a default deny network policy. i.e create a np that denies ingress and egress traffic to all pods in a namespace.
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny
+  namespace: default
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  - Egress 
