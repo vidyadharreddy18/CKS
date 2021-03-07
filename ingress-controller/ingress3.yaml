@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name:
+spec:
+  rules:
+  - host: wear.myonlinestore.com
+    http:
+      paths:
+      - path: /wear
+        backend:
+          serviceName: ezpedvi-wear
+          servicePort: 80
+  #curl for above result in 404 not found
+  - host: watch.myonlinestore.com
+    http:
+      paths:
+      - path: /watch
+        backend:
+          serviceName: ezpedvi-watch
+          servicePort: 90
+  #curl for above result in 503 service not found
+  
+  
+  
+  
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name:
+spec:
+  rules:
+  - host: wear.myonlinestore.com
+    backend:
+      serviceName: ezpedvi-wear
+      servicePort: 80
+  #curl for above result in 404 not found
+  - host: watch.myonlinestore.com
+    backend:
+      serviceName: ezpedvi-watch
+      servicePort: 90
+  #curl for above result in 503 service not found
