@@ -1,0 +1,14 @@
+#simple ingress service definition file to route traffic to pods without any specific URL
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name:
+spec:
+    backend:
+        serviceName: ezpedvi-wear
+        servicePort: 80
+        
+#kubectl run ezpedvi-frontend --image=k8s-registry.eccd.local/nginx
+#kubectl expose pods ezpedvi-wear --port 80
+#verify using curl http://<any-url>:80
