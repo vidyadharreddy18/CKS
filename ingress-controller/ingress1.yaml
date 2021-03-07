@@ -12,3 +12,8 @@ spec:
 #kubectl run ezpedvi-frontend --image=k8s-registry.eccd.local/nginx
 #kubectl expose pods ezpedvi-wear --port 80
 #verify using curl http://<any-url>:80
+
+k8s@k8s:~> kubectl get ingress,svc,pods | grep ezpedvi-wear
+ingress.extensions/ezpedvi-wear-ingress   <none>   *                     10.0.10.5,10.0.10.7   80      3m42s
+service/ezpedvi-wear   ClusterIP   10.104.222.124   <none>        810/TCP   57m
+pod/ezpedvi-wear   1/1     Running   0          68m
