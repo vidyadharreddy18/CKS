@@ -1,5 +1,4 @@
 #an ingress svc definition file to route traffic to pods based on URL paths.
-
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -12,10 +11,19 @@ spec:
         backend:
           serviceName: ezpedvi-wear
           servicePort: 80
+  #curl for above result in 404 not found
   - http:
       paths:
       - path: /watch
         backend:
           serviceName: ezpedvi-wear
           servicePort: 90
+  #curl for above result in 503 service not found
+
+
+#k8s@dire:~/ezpedvi> kubectl get pods,svc,ep,ingress | grep ezpedvi
+#pod/ezpedvi-wear   1/1     Running   0          130m
+#service/ezpedvi-wear   ClusterIP   10.5525.5552.131   <none>        80/TCP    12m
+#endpoints/ezpedvi-wear   192.168.73.216:80                                12m
+#ingress.extensions/ezpedvi-ingress-url-path   <none>   *                     10.0.10.5,10.0.10.7   80      2m59s
           
