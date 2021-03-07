@@ -1,0 +1,21 @@
+#an ingress svc definition file to route traffic to pods based on URL paths.
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name:
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /wear
+        backend:
+          serviceName: ezpedvi-wear
+          servicePort: 80
+  - http:
+      paths:
+      - path: /watch
+        backend:
+          serviceName: ezpedvi-wear
+          servicePort: 90
+          
