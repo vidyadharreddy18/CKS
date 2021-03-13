@@ -3,9 +3,7 @@ kind: NetworkPolicy
 metadata:
   name: db-deny-ploicy
 spec:
-  podSelector:
-    matchLabels:
-      role: db
+  podSelector: {}
   policyTypes:
   - Ingress
   - Egress
