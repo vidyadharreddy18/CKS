@@ -1,0 +1,47 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: frontend
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      run: frontend
+  policyTypes:
+  - Egress
+  egress:
+  - to:
+    podSelector:
+      matchLabels:
+        run: backend
+  - ports:
+    - port: 53
+      protocol: TCP
+    - port: 53
+      protocol: UDP
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: backend
+  namespace: default
+spec:
+  podSelector:
+    matchLabels:
+      run: backend
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    podSelector:
+      matchLabels:
+        run: frontend
+  - ports:
+    - port: 53
+      protocol: TCP
+    - port: 53
+      protocol: UDP    
+    
+#With default deny policy existing, apply policy to allow front end pods to communicate with backend pods.
