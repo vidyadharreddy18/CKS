@@ -1,0 +1,21 @@
+#ingress service example definition file to route traffic based on domain names:
+#ex: wear.myonlinestore.com, watch.myonlinestore.com
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-wear
+spec:
+  rules:
+  - host: wear.myonlinestore.com
+    http:
+      paths:
+      - backend:
+          serviceName: wear-service
+          servicePort: 80
+  - host: watch.myonlinestore.com
+    http:
+      paths:
+      - backend:
+          serviceName: watch-service
+          servicePort: 80
