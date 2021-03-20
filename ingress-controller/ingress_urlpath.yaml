@@ -1,0 +1,19 @@
+#ingress service example definition file to route traffic based on url paths:
+#ex: myonlinestore.com/wear, myonlinestore.com/watch
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-wear
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /wear
+        backend:
+          serviceName: wear-service
+          servicePort: 80
+      - path: /watch
+        backend:
+          serviceName: watch-service
+          servicePort:  80
